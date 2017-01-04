@@ -12,7 +12,9 @@ defined('_JEXEC') or die;
 JHtml::_('behavior.keepalive');
 JHtml::_('bootstrap.tooltip');
 
-$twofactormethods = JAuthenticationHelper::getTwoFactorMethods();
+JLoader::register('ModLoginHelper', JPATH_ADMINISTRATOR . '/modules/mod_login/helper.php');
+
+$twofactormethods = ModLoginHelper::getTwoFactorMethods();
 
 ?>
 <div class="alert alert-warning">

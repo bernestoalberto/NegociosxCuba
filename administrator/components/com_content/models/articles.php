@@ -55,7 +55,7 @@ class ContentModelArticles extends JModelList
 
 			if (JLanguageAssociations::isEnabled())
 			{
-				$config['filter_fields'][] = 'association';
+				$config['filter_fields'][] = '';
 			}
 		}
 
@@ -199,12 +199,12 @@ class ContentModelArticles extends JModelList
 		$query->select('ua.name AS author_name')
 			->join('LEFT', '#__users AS ua ON ua.id = a.created_by');
 
-		// Join over the associations.
+		// Join over the s.
 		if (JLanguageAssociations::isEnabled())
 		{
-			$query->select('COUNT(asso2.id)>1 as association')
-				->join('LEFT', '#__associations AS asso ON asso.id = a.id AND asso.context=' . $db->quote('com_content.item'))
-				->join('LEFT', '#__associations AS asso2 ON asso2.key = asso.key')
+			$query->select('COUNT(asso2.id)>1 as ')
+				->join('LEFT', '#__s AS asso ON asso.id = a.id AND asso.context=' . $db->quote('com_content.item'))
+				->join('LEFT', '#__s AS asso2 ON asso2.key = asso.key')
 				->group('a.id, l.title, l.image, uc.name, ag.title, c.title, ua.name');
 		}
 

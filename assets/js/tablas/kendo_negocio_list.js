@@ -553,9 +553,7 @@ $(function() {
 						})
 					}
 					$('#confirm_solicitud_form')[0].reset();
-					$('#solicitud_form')[0].reset();
 					wnd_confirm_solicitud.close();
-					wnd_negocio_solicitud.close();
 					Solicitud.gridDataSource.read();
 					Solicitud_Procesadas.gridDataSource.read();
 				}
@@ -573,14 +571,10 @@ $(function() {
 	});
 
 	$('#accionbtn_solicitud_confirmacioncancel').click(function(){
-
-			$('#confirm_form')[0].reset();
-			Solicitud.gridDataSource.read();
-			wnd_confirm_solicitud.close();
-			wnd_negocio_solicitud.close();
-
-
-
+		$('#confirm_form')[0].reset();
+		Solicitud.gridDataSource.read();
+		wnd_confirm_solicitud.close();
+		wnd_negocio_solicitud.close();
 	});
 
 	$('#accionbtn_cancelar_pro_solicitud').click(function(){
@@ -588,34 +582,24 @@ $(function() {
 		wnd_confirm_solicitud.close();
 	});
 	$('#cancel_bussines_btn').click(function(){
-		if( arrayAceptedBussines.length>0) {
-			$("#gridselection_negocio_list").data("kendoGrid").clearSelection();
-			var t;
-			var r;
-			for (t = 0; t < arrayAceptedBussines.length; t++) {
-				Solicitud_Negocio.gridDataSource._data.splice(0, t, arrayAceptedBussines[t]);
-			}
-			for (r = 0; r < arrayRejectedBussines.length; r++) {
-				Solicitud_Negocio.gridDataSource._data.splice(0, t, arrayRejectedBussines[r]);
-				t++;
-			}
 
-
-			Solicitud_Negocio.gridDataSource.read();
-			kendoConsole.clear();
-			arrayAceptedBussines = [];
-			arrayRejectedBussines = [];
+		$("#gridselection_negocio_list").data("kendoGrid").clearSelection();
+			debugger;
+		var t;
+		var r;
+		for (t = 0; t < arrayAceptedBussines.length; t++) {
+			Solicitud_Negocio.gridDataSource._data.splice(0, t, arrayAceptedBussines[t]);
+				}
+		for (r = 0; r < arrayRejectedBussines.length; r++) {
+			Solicitud_Negocio.gridDataSource._data.splice(0,t,arrayRejectedBussines[r]);
+			t++;
 		}
-		else{
 
-			$.smallBox({
-				title: "<span class='fa fa-trash-o'></span>     Cancelar Solicitud de Negocio ",
-				content: "<p>Debe seleccionar al menos un elemento</p>",
-				color: "#F2092A",
-				timeout: 1000,
-				top:10
-			})
-		}
+
+		Solicitud_Negocio.gridDataSource.read();
+		kendoConsole.clear();
+		arrayAceptedBussines = [];
+		arrayRejectedBussines = [];
 	});
 
 });

@@ -10,7 +10,6 @@
 defined('_JEXEC') or die;
 
 use Joomla\Registry\Registry;
-use Joomla\Utilities\ArrayHelper;
 
 /**
  * User model.
@@ -309,6 +308,117 @@ class UsersModelUser extends JModelAdmin
 		}
 
 		$this->setState('user.id', $user->id);
+		JModelLegacy::addIncludePath (JPATH_ROOT.'/components/com_negocio/models');
+		JModelLegacy::addIncludePath (JPATH_ROOT.'/components/com_rrhh/models');
+
+		$rrhh = array();
+		if($data['ui']!= true) {
+			$bussines = array();
+			if($data['name_negocio']=""){
+				$bussines['nombre_negocio'] = 'Sin nombre';
+			}
+			else{
+				$bussines['nombre_negocio'] = $data['name_negocio'];
+			}
+
+			if($data['direccion']=""){
+				$bussines ['direccion_negocio'] = 'Sin direccion';
+			}
+			else
+			{
+				$bussines ['direccion_negocio'] = $data['direccion'];
+			}
+
+
+				if($data['descripcion']=""){
+					$bussines ['descripcion'] = "sin descripcion";
+				}
+			else{
+				$bussines ['resenya_negocio'] = $data['descripcion'];
+			}
+
+
+					if($data['foto']=""){
+						$bussines ['foto'] = "Sin foto";
+					}
+			else{
+				$bussines ['foto'] = $data['foto'];
+			}
+
+			if($data['ui']!=true ){
+				$bussines ['otro_telefono'] = $data['land_phone1'];
+				$bussines ['telefono_fijo'] = $data['land_phone'];
+				$bussines ['correo'] = $data['email_negocio'];
+				$bussines ['id'] = $user->id;
+				$bussines ['foto1'] = $data['foto1'];
+				$bussines ['foto2'] = $data['foto2'];
+
+
+				$negociomodel = JModelLegacy::getInstance('negocio');
+				$negociomodel->bind($bussines);
+				$negociomodel->store();
+			}
+		}
+		if($data['id']!=""){
+			$rrhh['id_user'] = $data['id'];
+		}
+
+		else{
+			$rrhh['id_user'] =$user->id;
+		}
+
+			$rrhh['id_recurso_humano'] = $data['id_recurso_humano'];
+			$rrhh['identificacion'] = $data['identificacion'];
+			$rrhh['telefono_fijo'] = $data['land_phone_rh'];
+			$rrhh['telefono_movil'] = $data['telefono_movil'];
+			$rrhh['foto'] = $data['foto_perfil'];
+
+
+
+		if($data['calle_principal']==""){
+			$rrhh['calle_principal_address'] = "No tiene";
+		}
+
+		else{
+			$rrhh['calle_principal_address'] = $data['calle_principal'];
+		}
+
+
+		if($data['primera_entrecalle']==""){
+			$rrhh['primera_entrecalle_address'] = "No tiene";
+		}
+
+		else{
+			$rrhh['primera_entrecalle_address'] = $data['primera_entrecalle'];
+		}
+		if($data['segunda_entrecalle']==""){
+			$rrhh['segundo_entrecalle_address'] = "No tiene";
+		}
+
+		else{
+			$rrhh['segundo_entrecalle_address'] = $data['segunda_entrecalle'];
+		}
+
+
+			$rrhh['id_municipio'] = $data['municipio'];
+			$rrhh['id_provincia'] = $data['provincia'];
+
+
+			$rrhhmodel = JModelLegacy::getInstance('RRHH');
+			$rrhhmodel->bind($rrhh);
+
+
+			try {
+
+				$rrhhmodel->store();
+
+			} catch (Exception $e) {
+				echo $e->getMessage();
+				JFactory::getApplication()->close();
+			}
+
+
+
 
 		return true;
 	}
@@ -322,7 +432,7 @@ class UsersModelUser extends JModelAdmin
 	 *
 	 * @since   1.6
 	 */
-	public function delete(&$pks)
+	public function delete(&$pks,$data)
 	{
 		$user  = JFactory::getUser();
 		$table = $this->getTable();
@@ -359,6 +469,49 @@ class UsersModelUser extends JModelAdmin
 
 					// Fire the before delete event.
 					$dispatcher->trigger($this->event_before_delete, array($table->getProperties()));
+
+					JModelLegacy::addIncludePath (JPATH_ROOT.'/components/com_rrhh/models');
+					$rrhh = array();
+
+					$rrhh['id_recurso_humano'] = $data->id_recurso_humano;
+					$rrhh['id_user'] = $data->id_user;
+					$rrhh['identificacion'] = $data->identificacion;
+					$rrhh['telefono_fijo'] = $data->land_phone_rh;
+					$rrhh['telefono_movil'] = $data->land_phone1_rh;
+					$rrhh['foto'] = $data->foto;
+					$rrhh['calle_principal_address'] = $data->calle_principal;
+					$rrhh['primera_entrecalle_address'] = $data->primera_entrecalle;
+					$rrhh['segundo_entrecalle_address'] = $data->segunda_entrecalle;
+					$rrhh['id_municipio'] = $data->municipio;
+					$rrhh['id_provincia'] = $data->provincia;
+
+					if($data->foto != ""){
+						jimport('joomla.filesystem.file');
+						$path =JPATH_IMG_UPLOAD_PROFILE.DIRECTORY_SEPARATOR.$data->foto;
+						$path=JPath::clean($path);
+						$r =JFile::exists($path);
+						if($r)
+							JFile::delete($path);
+					}
+
+
+					$rrhhmodel=JModelLegacy::getInstance('RRHH');
+					$rrhhmodel->bind($rrhh);
+
+
+					try {
+
+						$rrhhmodel->delete();
+
+					}
+					catch(Exception $e)
+					{
+						echo $e->getMessage();
+						JFactory::getApplication()->close();
+					}
+
+
+
 
 					if (!$table->delete($pk))
 					{
@@ -677,19 +830,6 @@ class UsersModelUser extends JModelAdmin
 	 */
 	public function batchReset($user_ids, $action)
 	{
-		$user_ids = ArrayHelper::toInteger($user_ids);
-
-		// Check if I am a Super Admin
-		$iAmSuperAdmin = JFactory::getUser()->authorise('core.admin');
-
-		// Non-super super user cannot work with super-admin user.
-		if (!$iAmSuperAdmin && JUserHelper::checkSuperUserInUsers($user_ids))
-		{
-			$this->setError(JText::_('COM_USERS_ERROR_CANNOT_BATCH_SUPERUSER'));
-
-			return false;
-		}
-
 		// Set the action to perform
 		if ($action === 'yes')
 		{
@@ -712,6 +852,8 @@ class UsersModelUser extends JModelAdmin
 
 		// Get the DB object
 		$db = $this->getDbo();
+
+		JArrayHelper::toInteger($user_ids);
 
 		$query = $db->getQuery(true);
 
@@ -749,29 +891,18 @@ class UsersModelUser extends JModelAdmin
 	 */
 	public function batchUser($group_id, $user_ids, $action)
 	{
+		// Get the DB object
+		$db = $this->getDbo();
+
 		JArrayHelper::toInteger($user_ids);
 
-		// Check if I am a Super Admin
-		$iAmSuperAdmin = JFactory::getUser()->authorise('core.admin');
-
-		// Non-super super user cannot work with super-admin user.
-		if (!$iAmSuperAdmin && JUserHelper::checkSuperUserInUsers($user_ids))
-		{
-			$this->setError(JText::_('COM_USERS_ERROR_CANNOT_BATCH_SUPERUSER'));
-
-			return false;
-		}
-
-		// Non-super admin cannot work with super-admin group.
-		if ((!$iAmSuperAdmin && JAccess::checkGroup($group_id, 'core.admin')) || $group_id < 1)
+		// Non-super admin cannot work with super-admin group
+		if ((!JFactory::getUser()->get('isRoot') && JAccess::checkGroup($group_id, 'core.admin')) || $group_id < 1)
 		{
 			$this->setError(JText::_('COM_USERS_ERROR_INVALID_GROUP'));
 
 			return false;
 		}
-
-		// Get the DB object
-		$db = $this->getDbo();
 
 		switch ($action)
 		{
@@ -983,50 +1114,15 @@ class UsersModelUser extends JModelAdmin
 		}
 
 		// Get the encrypted data
-		list($method, $config) = explode(':', $item->otpKey, 2);
+		list($method, $encryptedConfig) = explode(':', $item->otpKey, 2);
 		$encryptedOtep = $item->otep;
 
-		// Get the secret key, yes the thing that is saved in the configuration file
-		$key = $this->getOtpConfigEncryptionKey();
-
-		if (strpos($config, '{') === false)
-		{
-			$openssl         = new FOFEncryptAes($key, 256);
-			$mcrypt          = new FOFEncryptAes($key, 256, 'cbc', null, 'mcrypt');
-
-			$decryptedConfig = $mcrypt->decryptString($config);
-
-			if (strpos($decryptedConfig, '{') !== false)
-			{
-				// Data encrypted with mcrypt
-				$decryptedOtep = $mcrypt->decryptString($encryptedOtep);
-				$encryptedOtep = $openssl->encryptString($decryptedOtep);
-			}
-			else
-			{
-				// Config data seems to be save encrypted, this can happen with 3.6.3 and openssl, lets get the data
-				$decryptedConfig = $openssl->decryptString($config);
-			}
-
-			$otpKey = $method . ':' . $decryptedConfig;
-
-			$query = $db->getQuery(true)
-				->update($db->qn('#__users'))
-				->set($db->qn('otep') . '=' . $db->q($encryptedOtep))
-				->set($db->qn('otpKey') . '=' . $db->q($otpKey))
-				->where($db->qn('id') . ' = ' . $db->q($user_id));
-			$db->setQuery($query);
-			$db->execute();
-		}
-		else
-		{
-			$decryptedConfig = $config;
-		}
-
 		// Create an encryptor class
+		$key = $this->getOtpConfigEncryptionKey();
 		$aes = new FOFEncryptAes($key, 256);
 
 		// Decrypt the data
+		$decryptedConfig = $aes->decryptString($encryptedConfig);
 		$decryptedOtep = $aes->decryptString($encryptedOtep);
 
 		// Remove the null padding added during encryption
@@ -1098,7 +1194,7 @@ class UsersModelUser extends JModelAdmin
 		{
 			$decryptedConfig = json_encode($otpConfig->config);
 			$decryptedOtep = json_encode($otpConfig->otep);
-			$updates->otpKey = $otpConfig->method . ':' . $decryptedConfig;
+			$updates->otpKey = $otpConfig->method . ':' . $aes->encryptString($decryptedConfig);
 			$updates->otep = $aes->encryptString($decryptedOtep);
 		}
 

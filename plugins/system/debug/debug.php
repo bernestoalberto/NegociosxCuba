@@ -156,21 +156,6 @@ class PlgSystemDebug extends JPlugin
 		// Prepare disconnect handler for SQL profiling.
 		$db = JFactory::getDbo();
 		$db->addDisconnectHandler(array($this, 'mysqlDisconnectHandler'));
-
-		// Log deprecated class aliases
-		foreach (JLoader::getDeprecatedAliases() as $deprecation)
-		{
-			JLog::add(
-				sprintf(
-					'%1$s has been aliased to %2$s and the former class name is deprecated. The alias will be removed in %3$s.',
-					$deprecation['old'],
-					$deprecation['new'],
-					$deprecation['version']
-				),
-				JLog::WARNING,
-				'deprecated'
-			);
-		}
 	}
 
 	/**
@@ -375,7 +360,7 @@ class PlgSystemDebug extends JPlugin
 			return __METHOD__ . ' -- Unknown method: ' . $fncName . '<br />';
 		}
 
-		$html = array();
+		$html = '';
 
 		$js = "toggleContainer('dbg_container_" . $item . "');";
 
@@ -533,7 +518,7 @@ class PlgSystemDebug extends JPlugin
 		foreach (JProfiler::getInstance('Application')->getMarks() as $mark)
 		{
 			$totalTime += $mark->time;
-			$totalMem += (float) $mark->memory;
+			$totalMem += $mark->memory;
 			$htmlMark = sprintf(
 				JText::_('PLG_DEBUG_TIME') . ': <span class="label label-time">%.2f&nbsp;ms</span> / <span class="label label-default">%.2f&nbsp;ms</span>'
 				. ' ' . JText::_('PLG_DEBUG_MEMORY') . ': <span class="label label-memory">%0.3f MB</span> / <span class="label label-default">%0.2f MB</span>'
@@ -601,7 +586,7 @@ class PlgSystemDebug extends JPlugin
 			);
 
 			$barsMem[] = (object) array(
-				'width' => round((float) $mark->memory / ($totalMem / 100), 4),
+				'width' => round($mark->memory / ($totalMem / 100), 4),
 				'class' => $barClassMem,
 				'tip' => $mark->tip . ' ' . round($mark->memory, 3) . '  MB',
 			);

@@ -36,6 +36,12 @@
 			validate="equals"
 			field="password"
 		/>
+		<field name="identificacion" type="number"
+			   autocomplete="on"
+			   description="carne de identificacion del titular del negocio"
+			   label="Identificación"
+			   size="30"
+		/>
 
 		<field name="email" type="email"
 			description="COM_USERS_USER_FIELD_EMAIL_DESC"
@@ -44,6 +50,235 @@
 			size="30"
 			validate="email"
 		/>
+
+		<field name="foto_perfil" type="media"
+			   description="foto de perfil"
+			   label="Foto"
+			   size="30"
+		/>
+		<field name="land_phone_rh" type="number"
+
+			   label="Telefono"
+			   size="30"
+		/>
+		<field name="land_phone1_rh" type="number"
+
+			   label="Otro Telefono"
+			   size="30"
+		/>
+		<field name="calle_principal" type="text"
+			   description="calle_principal"
+			   label="Calle Principal"
+			   size="30"
+		/>
+		<field name="primera_entrecalle" type="text"
+			   description="primera_entrecalle"
+			   label="Primera Calle "
+			   size="30"
+		/>
+		<field name="segundo_entrecalle" type="text"
+			   description="segundo_entrecalle"
+			   label="Segunda  Calle"
+			   size="30"
+		/>
+
+		<field name="provincia"
+			   type="list"
+			   label="Escoja la Provincia"
+			   description="Provincia"
+			   default="2"
+		>
+			<option value="1">Pinar del Rio</option>
+			<option value="2">Cuidad de la Habana</option>
+			<option value="5">Mayabueque</option>
+			<option value="7">Matanzas</option>
+			<option value="8">Isla de Pinos</option>
+			<option value="9">Cienfuegos</option>
+			<option value="10">Villa Clara</option>
+			<option value="11">Ciego de Avila</option>
+			<option value="12">Sancti Spiritus</option>
+			<option value="13">Camaguey</option>
+			<option value="14">Las Tunas</option>
+			<option value="15">Holguín</option>
+			<option value="16">	Santiago de Cuba</option>
+			<option value="17">Granma</option>
+			<option value="18">Guantanamo</option>
+
+		</field>
+		<field name="municipio"
+			   type="list"
+			   label="Escoja el municipio"
+			   description="municipios de Cuba"
+			   default="57"
+		>
+			<option value="1">Isla de la Juventud</option>
+			<option value="5">Bahia Honda</option>
+			<option value="6">Candelaria</option>
+			<option value="7">	Consolacion del Sur</option>
+			<option value="8">Guane</option>
+			<option value="9">La Palma</option>
+			<option value="10">Los Palacios</option>
+			<option value="11">Mantua</option>
+			<option value="12">Minas de Matahambre</option>
+			<option value="14">San CristÃ³bal</option>
+			<option value="15">San Juan</option>
+			<option value="16">San Luis</option>
+			<option value="17">Sandino</option>
+			<option value="18">ViÃ±ales</option>
+
+			<option value="30">alquizar</option>
+			<option value="31">batabano</option>
+			<option value="32">bauta</option>
+			<option value="33">bejucal</option>
+			<option value="34">Caimito del Guayabal</option>
+			<option value="35">Guanajay</option>
+			<option value="36">GÃ¼ines</option>
+			<option value="37">GÃ¼ira de Melena</option>
+			<option value="38">Jaruco</option>
+			<option value="39">Madruga</option>
+			<option value="40">Mariel</option>
+			<option value="41">Melena del Sur</option>
+			<option value="42">Nueva Paz</option>
+			<option value="43">QuivicÃ¡n</option>
+			<option value="44">San Antonio de los BaÃ±os</option>
+			<option value="45">San JosÃ© de las Lajas</option>
+			<option value="46">San NicolÃ¡s de Bari</option>
+			<option value="47">Santa Cruz del Norte</option>
+
+			<option value="49">Arroyo Naranjo</option>
+			<option value="50">Boyeros</option>
+			<option value="51">Centro Habana</option>
+			<option value="52">Cerro</option>
+			<option value="53">Cotorro</option>
+			<option value="54">Diez de Octubre</option>
+			<option value="55">Guanabacoa</option>
+			<option value="56">La Habana del Este</option>
+			<option value="57">	La Habana Vieja</option>
+			<option value="58">La Lisa</option>
+			<option value="60">	Marianao</option>
+			<option value="61">Playa</option>
+			<option value="62">Plaza de la RevoluciÃ³n</option>
+			<option value="63">	Regla</option>
+			<option value="64">San Miguel del PadrÃ³n</option>
+			<option value="65">Varadero</option>
+			<option value="66">Limonar</option>
+			<option value="67">CiÃ©naga de Zapata</option>
+			<option value="68">Los Arabos</option>
+			<option value="69">CÃ¡rdenas</option>
+			<option value="70">UniÃ³n de Reyes</option>
+			<option value="71">ColÃ³n</option>
+			<option value="72">JagÃ¼ey Grande</option>
+			<option value="73">Jovellanos</option>
+			<option value="74">Pedro Betancourt</option>
+			<option value="75">Perico</option>
+			<option value="77">marti</option>
+			<option value="82">Abreu</option>
+			<option value="83">Aguada de Pasajeros</option>
+			<option value="84">Cruces</option>
+			<option value="85">Cumanayagua</option>
+			<option value="86">Lajas</option>
+			<option value="87">Palmira</option>
+			<option value="88">Rodas</option>
+			<option value="89">Caibarien</option>
+
+			<option value="90">CamajuanÃ­</option>
+			<option value="91">Cifuentes</option>
+			<option value="92">Corralillo</option>
+			<option value="93">Encrucijada</option>
+			<option value="94">Manicaragua</option>
+			<option value="95">Placetas</option>
+			<option value="96">Quemado de Guines</option>
+			<option value="97">Ranchuelo</option>
+			<option value="98">Remedios</option>
+			<option value="99">Sagua la Grande</option>
+			<option value="100">Santa Clara</option>
+			<option value="101">Santo Domingo</option>
+			<option value="102">CabaiguÃ¡n</option>
+			<option value="103">Fomento</option>
+			<option value="104">Jatibonico</option>
+			<option value="105">La Sierpe</option>
+			<option value="106">Taguasco</option>
+			<option value="107">Trinidad</option>
+			<option value="108">Yaguajay</option>
+			<option value="111">Chambas</option>
+			<option value="112">Moron</option>
+			<option value="113">Bolivia</option>
+			<option value="114">Primero de Enero</option>
+			<option value="115">Ciro Redondo</option>
+			<option value="116">Florencia</option>
+			<option value="117">Majagua</option>
+			<option value="118">Venezuela</option>
+			<option value="119">Baragua</option>
+			<option value="120">CÃ©spedes</option>
+			<option value="121">Esmeralda</option>
+			<option value="122">Florida</option>
+			<option value="123">GuÃ¡imaro</option>
+			<option value="124">JimaguayÃº</option>
+			<option value="125">Minas</option>
+			<option value="126">Najasa</option>
+			<option value="127">Nuevitas</option>
+			<option value="128">Santa Cruz del Sur</option>
+			<option value="129">SibanicÃº</option>
+			<option value="130">Sierra de Cubitas</option>
+			<option value="131">Vertientes</option>
+			<option value="132">Amancio</option>
+			<option value="133">Colobia</option>
+			<option value="134">JesÃºs MenÃ©ndez</option>
+			<option value="135">Jobabo</option>
+			<option value="136">Majibacoa</option>
+			<option value="137">Manati</option>
+
+			<option value="138">Puerto Padre</option>
+			<option value="140">BartolomÃ© MasÃ³</option>
+			<option value="141">Bayamo</option>
+			<option value="142">Buey Arriba</option>
+			<option value="143">Campechuela</option>
+			<option value="144">Cauto Cristo</option>
+			<option value="145">Guisa</option>
+			<option value="146">JiguanÃ­</option>
+			<option value="147">Manzanillo</option>
+			<option value="148">Media Luna</option>
+			<option value="149">Niquero</option>
+			<option value="150">PilÃ³n</option>
+			<option value="151">RÃ­o Cauto</option>
+			<option value="152">Yara</option>
+			<option value="153">Antilla</option>
+			<option value="154">BÃ¡guanos</option>
+			<option value="155">Banes</option>
+			<option value="156">Cacocum</option>
+			<option value="157">Calixto GarcÃ­a</option>
+			<option value="158">Cueto</option>
+			<option value="159">Frank PaÃ­s</option>
+			<option value="160">Gibara</option>
+			<option value="161">MayarÃ­</option>
+			<option value="162">Moa</option>
+			<option value="163">Rafael Freyre</option>
+			<option value="164">Sagua de TÃ¡namo</option>
+			<option value="165">Urbano Noris</option>
+			<option value="166">Baracoa</option>
+			<option value="167">Caimanera</option>
+			<option value="168">El Salvador</option>
+			<option value="169">GuantÃ¡namo</option>
+			<option value="170">Imias</option>
+			<option value="171">Maisi</option>
+			<option value="172">Manuel Tames</option>
+			<option value="173">Niceto Perez</option>
+			<option value="174">San Antonio del Sur</option>
+			<option value="175">Yateras</option>
+			<option value="176">Contramaestre</option>
+			<option value="177">Guamá</option>
+			<option value="178">Mella</option>
+			<option value="179">San Luis</option>
+			<option value="180">Segundo Frente</option>
+			<option value="181">Songo-La Maya</option>
+			<option value="182">Tercer Frente</option>
+
+
+
+		</field>
+
+
+
 
 		<field
 			name="registerDate"
@@ -137,6 +372,67 @@
 	</fieldset>
 	<field name="groups" type="hidden" />
 	<field name="twofactor" type="hidden" />
+	<fieldset name="bussines" label="Negocio">
+		<field name="name_negocio" type="text"
+			   label="Nombre"
+			   size="30"
+		/>
+		<field name="direccion" type="textarea"
+			   label="Dirección"
+			   size="30"
+		/>
+		<field name="descripcion" type="textarea"
+			   size="30"
+		/>
+		<field name="foto" type="media"
+
+			   label="Foto"
+			   size="30"
+		/>
+		<field name="foto1" type="media"
+
+			   label="Foto1"
+			   size="30"
+		/>
+		<field name="foto2" type="media"
+
+			   label="Foto2"
+			   size="30"
+		/>
+		<field name="land_phone" type="number"
+
+			   label="Telefono"
+			   size="30"
+		/>
+		<field name="land_phone1" type="number"
+
+			   label="Otro Telefono"
+			   size="30"
+		/>
+		<field name="email_negocio" type="email"
+			   label="Correo"
+			   size="30"
+			   validate="email"
+		/>
+		<field name="enlace_negocio" type="text"
+			   label="Url"
+			   size="30"
+		/>
+		<field name="cliente_premium"
+			   type="list"
+			   required="true"
+			   label="Cliente Premium"
+			   description="cliente_premium"
+			   default="0"
+		>
+
+			<option value="1">si</option>
+			<option value="0">no</option>
+
+		</field>
+
+
+	</fieldset>
 
 	<fields name="params">
 

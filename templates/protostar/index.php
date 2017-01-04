@@ -38,6 +38,9 @@ else
 	$fullWidth = 0;
 }
 
+
+
+
 // Add JavaScript Frameworks
 JHtml::_('bootstrap.framework');
 
@@ -46,6 +49,7 @@ $doc->addScriptVersion($this->baseurl . '/templates/' . $this->template . '/js/t
 // Add Stylesheets
 $doc->addStyleSheetVersion($this->baseurl . '/templates/' . $this->template . '/css/template.css');
 
+include('mis_assets.php');
 // Use of Google Font
 if ($this->params->get('googleFont'))
 {
@@ -203,7 +207,7 @@ else
 			<hr />
 			<jdoc:include type="modules" name="footer" style="none" />
 			<p class="pull-right">
-				<a href="#" id="back-top">
+				<a href="#top" id="back-top">
 					<?php echo JText::_('TPL_PROTOSTAR_BACKTOTOP'); ?>
 				</a>
 			</p>
@@ -213,5 +217,29 @@ else
 		</div>
 	</footer>
 	<jdoc:include type="modules" name="debug" style="none" />
+
+
+	<?php
+	// Añadiendo el js en el Layout del componente
+	$listjs = $this->_script;
+	if($listjs !=null) {
+		if (isset($listjs)) {
+
+			if (count($listjs[0]) == 1)
+				foreach ($listjs as $js) {
+
+					echo '<script src="' . $js . '" ></script>';
+				}
+			else {
+
+				foreach ($listjs[0] as $js)
+					echo '<script src="' . $js . '" ></script>';
+
+			}
+
+		}
+	}
+
+	?>
 </body>
 </html>

@@ -102,8 +102,8 @@
 			<option value="category_title DESC">JCATEGORY_DESC</option>
 			<option value="a.access ASC">JGRID_HEADING_ACCESS_ASC</option>
 			<option value="a.access DESC">JGRID_HEADING_ACCESS_DESC</option>
-			<option value="association ASC" requires="associations">JASSOCIATIONS_ASC</option>
-			<option value="association DESC" requires="associations">JASSOCIATIONS_DESC</option>
+			<option value=" ASC" requires="s">JASSOCIATIONS_ASC</option>
+			<option value=" DESC" requires="s">JASSOCIATIONS_DESC</option>
 			<option value="a.created_by ASC">JAUTHOR_ASC</option>
 			<option value="a.created_by DESC">JAUTHOR_DESC</option>
 			<option value="language ASC">JGRID_HEADING_LANGUAGE_ASC</option>

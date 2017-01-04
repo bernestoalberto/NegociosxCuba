@@ -208,6 +208,23 @@ class JSession implements IteratorAggregate
 	{
 		return $this->_expire;
 	}
+	/**
+	 *Checks for ajax request.
+	 *Made by Ernesto Alberto Bonet Moncada
+	 *@return  boolean  True if found and valid, false otherwise.
+	 **/
+	public function isAjaxRequest($method ='server')
+	{
+		$app = JFactory::getApplication();
+		$ajax = $app->input->$method->get('HTTP_X_REQUESTED_WITH', '', 'string');
+		if ($ajax === 'XMLHttpRequest') {
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 	/**
 	 * Get a session token, if a token isn't set yet one will be generated.
@@ -222,6 +239,10 @@ class JSession implements IteratorAggregate
 	 *
 	 * @since   11.1
 	 */
+
+
+
+
 	public function getToken($forceNew = false)
 	{
 		$token = $this->get('session.token');
@@ -346,7 +367,7 @@ class JSession implements IteratorAggregate
 		if ($this->_state === 'destroyed')
 		{
 			// @TODO : raise error
-			return;
+			return null;
 		}
 
 		return $this->_handler->getName();
@@ -364,7 +385,7 @@ class JSession implements IteratorAggregate
 		if ($this->_state === 'destroyed')
 		{
 			// @TODO : raise error
-			return;
+			return null;
 		}
 
 		return $this->_handler->getId();
@@ -522,7 +543,7 @@ class JSession implements IteratorAggregate
 		if ($this->_state !== 'active')
 		{
 			// @TODO :: generated error here
-			return;
+			return null;
 		}
 
 		$prev = $this->data->get($namespace . '.' . $name, null);
@@ -549,7 +570,7 @@ class JSession implements IteratorAggregate
 		if ($this->_state !== 'active')
 		{
 			// @TODO :: generated error here
-			return;
+			return null;
 		}
 
 		return !is_null($this->data->get($namespace . '.' . $name, null));
@@ -573,7 +594,7 @@ class JSession implements IteratorAggregate
 		if ($this->_state !== 'active')
 		{
 			// @TODO :: generated error here
-			return;
+			return null;
 		}
 
 		return $this->data->set($namespace . '.' . $name, null);

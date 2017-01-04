@@ -228,13 +228,13 @@ class JoomlaupdateModelDefault extends JModelLegacy
 
 		if ($db->execute())
 		{
-			$this->_message = JText::_('COM_JOOMLAUPDATE_CHECKED_UPDATES');
+			$this->_message = JText::_('JLIB_INSTALLER_PURGED_UPDATES');
 
 			return true;
 		}
 		else
 		{
-			$this->_message = JText::_('COM_JOOMLAUPDATE_FAILED_TO_CHECK_UPDATES');
+			$this->_message = JText::_('JLIB_INSTALLER_FAILED_TO_PURGE_UPDATES');
 
 			return false;
 		}
@@ -251,20 +251,7 @@ class JoomlaupdateModelDefault extends JModelLegacy
 	{
 		$updateInfo = $this->getUpdateInformation();
 		$packageURL = $updateInfo['object']->downloadurl->_data;
-		$headers    = get_headers($packageURL, 1);
-
-		// Follow the Location headers until the actual download URL is known
-		while (isset($headers['Location']))
-		{
-			$packageURL = $headers['Location'];
-			$headers    = get_headers($packageURL, 1);
-		}
-		// Remove protocol, path and query string from URL
-		$basename = basename($packageURL);
-		if (strpos($basename, '?') !== false)
-		{
-			$basename = substr($basename, 0, strpos($basename, '?'));
-		}
+		$basename   = basename($packageURL);
 
 		// Find the path to the temp directory and the local package.
 		$config  = JFactory::getConfig();

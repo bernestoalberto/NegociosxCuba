@@ -56,6 +56,21 @@
 			<option value="2">JARCHIVED</option>
 			<option value="-2">JTRASHED</option>
 		</field>
+		<!---<field
+			name="posicion"
+			type="list"
+			label="Posición"
+			description="Posición del Banner"
+			class="chzn-color-state"
+			size="1"
+			default="1"
+			>
+			<option value="1">Arriba</option>
+			<option value="0">Centro</option>
+			<option value="2">Abajo</option>
+			<option value="3">Derecha</option>
+			<option value="4">Izquierda</option>
+		</field>--->
 
 		<field
 			name="ordering"
@@ -92,7 +107,7 @@
 			description="COM_BANNERS_FIELD_DESCRIPTION_DESC"
 			filter="JComponentHelper::filterText"
 			buttons="true"
-			hide="readmore,pagebreak,module,article"
+			hide="readmore,pagebreak"
 		/>
 
 		<field

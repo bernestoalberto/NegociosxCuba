@@ -88,13 +88,13 @@ wnd_ley = $("#ley_window").kendoWindow({
 			}
  
 			if(Ley.oldElement.incluir_pagina_principal=="si") {
-			$("#incluir_pagina_principal").attr('checked', true);
+			$("#incluir_pagina_principal").prop('checked', true);
 
 			}
 			else{
 
 
-			$("#incluir_pagina_principal").attr('checked', false);
+			$("#incluir_pagina_principal").prop('checked', false);
 			}
 
 		}

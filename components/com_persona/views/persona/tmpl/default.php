@@ -231,6 +231,7 @@ $componentbase = $this->_basePath;
 
 
                                 </div>
+
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="input-group margin" id= "div_principal">
@@ -283,7 +284,6 @@ $componentbase = $this->_basePath;
                                 </div>
 
                             </div>
-
                             <input class="input-group margin" class="form-control" value="" type="hidden" id="taskrrhh"/>
                     </div>
 

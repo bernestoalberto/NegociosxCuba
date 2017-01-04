@@ -13,7 +13,7 @@ use Joomla\Registry\Registry;
 use Joomla\Utilities\ArrayHelper;
 
 // Base this model on the backend version.
-JLoader::register('ContentModelArticle', JPATH_ADMINISTRATOR . '/components/com_content/models/article.php');
+require_once JPATH_ADMINISTRATOR . '/components/com_content/models/article.php';
 
 /**
  * Content Component Article Model

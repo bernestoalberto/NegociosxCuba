@@ -811,6 +811,36 @@
 				size="20" />
 
 		</fieldset>
+		<fieldset name="bussines" label="Adicional">
+			<field name="epigrafe" type="text"
+				   label="Epigrafe"
+				   size="30"
+			/>
+			<field name="bajante" type="textarea"
+				   label="Bajante"
+				   size="30"
+			/>
+			<field name="anuncio" type="textarea"
+				   label="Anuncio"
+				   size="30"
+			/>
+			<field name="fotografo" type="text"
+				   label="Fotografo"
+				   size="30"
+			/>
+			<field name="ley_asociada"
+				   type="list"
+				   label="Ley Asociada"
+				   description="Ley Asociada"
+			>
+				<option value="1">Ley</option>
+
+
+			</field>
+
+
+
+		</fieldset>
 	</fields>
 	<!-- These fields are used to get labels for the Content History Preview and Compare Views -->
 	<fields>

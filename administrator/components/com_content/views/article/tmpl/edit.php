@@ -18,7 +18,7 @@ JHtml::_('formbehavior.chosen', 'select', null, array('disable_search_threshold'
 
 $this->configFieldsets  = array('editorConfig');
 $this->hiddenFieldsets  = array('basic-limited');
-$this->ignore_fieldsets = array('jmetadata', 'item_associations');
+$this->ignore_fieldsets = array('jmetadata', 'item_s');
 
 // Create shortcut to parameters.
 $params = $this->state->get('params');
@@ -109,14 +109,14 @@ $tmpl    = $isModal || $input->get('tmpl', '', 'cmd') === 'component' ? '&tmpl=c
 			<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'images', JText::_('COM_CONTENT_FIELDSET_URLS_AND_IMAGES')); ?>
 			<div class="row-fluid form-horizontal-desktop">
 				<div class="span6">
-					<?php echo $this->form->renderField('images'); ?>
+					<?php echo $this->form->getControlGroup('images'); ?>
 					<?php foreach ($this->form->getGroup('images') as $field) : ?>
-						<?php echo $field->renderField(); ?>
+						<?php echo $field->getControlGroup(); ?>
 					<?php endforeach; ?>
 				</div>
 				<div class="span6">
 					<?php foreach ($this->form->getGroup('urls') as $field) : ?>
-						<?php echo $field->renderField(); ?>
+						<?php echo $field->getControlGroup(); ?>
 					<?php endforeach; ?>
 				</div>
 			</div>
@@ -142,8 +142,8 @@ $tmpl    = $isModal || $input->get('tmpl', '', 'cmd') === 'component' ? '&tmpl=c
 
 
 		<?php if ( ! $isModal && $assoc) : ?>
-			<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'associations', JText::_('JGLOBAL_FIELDSET_ASSOCIATIONS')); ?>
-			<?php echo $this->loadTemplate('associations'); ?>
+			<?php echo JHtml::_('bootstrap.addTab', 'myTab', 's', JText::_('JGLOBAL_FIELDSET_ASSOCIATIONS')); ?>
+			<?php echo $this->loadTemplate('s'); ?>
 			<?php echo JHtml::_('bootstrap.endTab'); ?>
 		<?php elseif ($isModal && $assoc) : ?>
 			<div class="hidden"><?php echo $this->loadTemplate('associations'); ?></div>

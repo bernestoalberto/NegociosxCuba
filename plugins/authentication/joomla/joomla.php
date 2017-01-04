@@ -82,10 +82,6 @@ class PlgAuthenticationJoomla extends JPlugin
 		}
 		else
 		{
-			// Let's hash the entered password even if we don't have a matching user for some extra response time
-			// By doing so, we mitigate side channel user enumeration attacks
-			JUserHelper::hashPassword($credentials['password']);
-
 			// Invalid user
 			$response->status        = JAuthentication::STATUS_FAILURE;
 			$response->error_message = JText::_('JGLOBAL_AUTH_NO_USER');
@@ -94,7 +90,9 @@ class PlgAuthenticationJoomla extends JPlugin
 		// Check the two factor authentication
 		if ($response->status == JAuthentication::STATUS_SUCCESS)
 		{
-			$methods = JAuthenticationHelper::getTwoFactorMethods();
+			require_once JPATH_ADMINISTRATOR . '/components/com_users/helpers/users.php';
+
+			$methods = UsersHelper::getTwoFactorMethods();
 
 			if (count($methods) <= 1)
 			{
@@ -102,10 +100,9 @@ class PlgAuthenticationJoomla extends JPlugin
 				return;
 			}
 
-			JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_users/models', 'UsersModel');
+			require_once JPATH_ADMINISTRATOR . '/components/com_users/models/user.php';
 
-			/** @var UsersModelUser $model */
-			$model = JModelLegacy::getInstance('User', 'UsersModel', array('ignore_request' => true));
+			$model = new UsersModelUser;
 
 			// Load the user's OTP (one time password, a.k.a. two factor auth) configuration
 			if (!array_key_exists('otp_config', $options))
@@ -142,6 +139,12 @@ class PlgAuthenticationJoomla extends JPlugin
 				}
 
 				return;
+			}
+
+			// Load the Joomla! RAD layer
+			if (!defined('FOF_INCLUDED'))
+			{
+				include_once JPATH_LIBRARIES . '/fof/include.php';
 			}
 
 			// Try to validate the OTP

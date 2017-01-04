@@ -64,7 +64,7 @@ class FinderViewMaps extends JViewLegacy
 	 */
 	public function display($tpl = null)
 	{
-		// Load plugin language files.
+		// Load plug-in language files.
 		FinderHelperLanguage::loadPluginLanguage();
 
 		// Load the view data.

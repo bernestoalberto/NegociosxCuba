@@ -9,7 +9,6 @@ $componentbase =  $this->_basePath;
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 	<title>Solicitud </title>
-
 </head>
 <body class="skin-blue sidebar-mini">
 <h3>   Procesar Solicitudes de Inscripción</h3>
@@ -332,7 +331,7 @@ $componentbase =  $this->_basePath;
 		<span class="info-box-text">Acción realizada </br> correctamente </span>
 	</div><!-- /.info-box-content -->
 </div>
-<div class="info-box bg-red" style="display: none;" id="message-error">
+<div class="info-box bg-red" style="display: none" id="message-error">
 	<span class="info-box-icon"><i class="fa fa-frown-o" style="font-size: 50px"></i></span>
 
 	<div class="info-box-content">

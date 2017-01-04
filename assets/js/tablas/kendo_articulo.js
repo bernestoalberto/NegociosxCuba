@@ -132,12 +132,12 @@ $(function() {
 
 				if (Articulo.oldElement.pagina_principal=="si") {
 
-				$("#pagina_principal").attr('checked', true);
+				$("#pagina_principal").prop('checked', true);
 
 
 				}
 				else{
-					$("#pagina_principal").attr('checked', false);
+					$("#pagina_principal").prop('checked', false);
 				}
 			}
 

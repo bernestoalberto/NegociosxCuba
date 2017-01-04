@@ -20,7 +20,7 @@ if (!$user->authorise('core.manage', 'com_media') && (!$asset or (!$user->author
 	&& count($user->getAuthorisedCategories($asset, 'core.create')) == 0)
 	&& !($user->id == $author && $user->authorise('core.edit.own', $asset))))
 {
-	throw new JAccessExceptionNotallowed(JText::_('JERROR_ALERTNOAUTHOR'), 403);
+	return JError::raiseWarning(403, JText::_('JERROR_ALERTNOAUTHOR'));
 }
 
 $params = JComponentHelper::getParams('com_media');

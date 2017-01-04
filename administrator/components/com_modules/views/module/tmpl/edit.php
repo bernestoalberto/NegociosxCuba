@@ -129,7 +129,7 @@ $script .= "
 							if (!tmpRow.hasClass('unpublished') || tmpRow.hasClass('')) { tmpRow.addClass('unpublished'); }
 						}
 						if (updStatus == -2) {
-							tmpStatus.html('<span class=\"label label-default\">" . JText::_("JTRASHED") . "</span>');
+							tmpStatus.html('<span class=\"label label-default\">" . JText::_("JTrashed") . "</span>');
 							if (!tmpRow.hasClass('unpublished') || tmpRow.hasClass('')) { tmpRow.addClass('unpublished'); }
 						}
 						if (document.formvalidator.isValid(document.getElementById('module-form'))) {
@@ -228,7 +228,7 @@ $tmpl    = $isModal || $input->get('tmpl', '', 'cmd') === 'component' ? '&tmpl=c
 			</div>
 			<div class="span3">
 				<fieldset class="form-vertical">
-					<?php echo $this->form->renderField('showtitle'); ?>
+					<?php echo $this->form->getControlGroup('showtitle'); ?>
 					<div class="control-group">
 						<div class="control-label">
 							<?php echo $this->form->getLabel('position'); ?>

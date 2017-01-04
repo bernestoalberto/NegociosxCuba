@@ -87,7 +87,7 @@ JHtml::script('jui/fielduser.min.js', false, true, false, false, true);
 				array(
 					'title'  => JText::_('JLIB_FORM_CHANGE_USER'),
 					'closeButton' => true,
-					'footer' => '<a type="button" class="btn" data-dismiss="modal">' . JText::_('JCANCEL') . '</a>'
+					'footer' => '<button type="button" class="btn" data-dismiss="modal">' . JText::_('JCANCEL') . '</button>'
 				)
 			); ?>
 		<?php endif; ?>

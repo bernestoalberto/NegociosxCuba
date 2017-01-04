@@ -832,6 +832,7 @@ var provinciadatasource = new kendo.data.DataSource({
 
 			]
 		});
+		
 	}
 
 /* $('#all_check_persona').iCheck({
