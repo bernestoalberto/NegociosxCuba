@@ -1,0 +1,25 @@
+require_once("program_fns.php");
+
+if (isset($_SESSION["valid_user"])){
+    if(!isset($_SESSION["car"]["conc"])){
+          $conn = db_connect();
+          if (!$conn)
+            return "No se puede conectar al servidor de la base de datos - por favor inténtalo más tarde.";
+        
+          
+          $result = mysql_query("select o.id, o.name_ocio, o.price from ocio AS o INNER JOIN categories AS c ON
+          c.id = o.cat_id where c.cat_name='concierto'");
+          if (!$result){
+             return "No se pudo ejecutar la petición";
+      	  }
+         while($row = mysql_fetch_array($result)) {
+             $_SESSION["car"]["conc"][$row['id']] = array($row['name_ocio'], $row['price'], 0);
+         }
+          
+    }
+
+
+
+
+if (isset($_SESSION["valid_user"])){
+ $_SESSION["car"]["conc"][0][2] += 1;
