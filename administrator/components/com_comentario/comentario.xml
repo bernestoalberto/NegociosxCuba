@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="1.0.0" method="upgrade">
+	<name>com_comentario</name>
+	<creationDate>2016-08</creationDate>
+	<author>Ernesto</author>
+	<authorEmail>bernestoalberto@gmail.com</authorEmail>
+	<authorUrl></authorUrl>
+	<copyright>Copyright Info</copyright>
+	<license>License Info</license>
+	<version>1.0.0</version>
+	<description>com_comentario_description</description>
+
+	<files>
+		<folder>assets</folder>
+		<folder>models</folder>
+		<folder>tables</folder>
+		<folder>views</folder>
+		<filename>index.html</filename>
+		<filename>comentario.php</filename>
+		<filename>controller.php</filename>
+	</files> 
+	<administration>
+</administration>
+</extension>
